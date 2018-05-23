@@ -24,4 +24,5 @@ end
  cust1.display_details()
  cust1.total_no_of_customers()
  cust2.display_details()
+ 
  cust2.total_no_of_customers()
