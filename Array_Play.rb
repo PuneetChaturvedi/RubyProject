@@ -5,9 +5,9 @@ class ArrayPlay
         x= a.each{|e|  e*2 }  # each return the original array, so to perform work in each do inside block only
        
        puts ""
-       puts x
+       puts x  # return original array
        puts ""
-       puts a
+       puts a  # return original array
     end
 
     def mapmethod
@@ -16,9 +16,9 @@ class ArrayPlay
                               #  in both then enumerator is returned, collect method is alias for map, map is more popular
        
        puts ""
-       puts x
+       puts x   # return modified array  
        puts ""
-       puts a
+       puts a  # return original array
     end
 
     def injectmethod
