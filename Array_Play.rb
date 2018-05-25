@@ -18,7 +18,7 @@ class ArrayPlay
        puts ""
        puts x   # return modified array  
        puts ""
-       puts a   # return original array
+       puts a   # return original the array
     end
 
     def injectmethod
