@@ -37,9 +37,7 @@ class PrcoessWorkHorseResponse
     def zipFiles
         time=Time.now.strftime("%Y-%d-%m_%H-%M-%S")
         Archive::Zip.archive(ARCHIVE[0]+ARCHIVE[1]+time+ARCHIVE[2], LOCAL_DIR+".")
-        Dir.glob(LOCAL_DIR+FILE_EXTN).each do |file|
-           File.delete(file)
-        end
+        Dir.glob(LOCAL_DIR+FILE_EXTN).each {|file|  File.delete(file) }
     end
 
     ## This is the main method of the class, it calls all the utility methods of the calls in a sequential order
