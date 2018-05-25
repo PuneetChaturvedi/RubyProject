@@ -77,3 +77,7 @@ BlockYield2.new.welcome2("puneet") { |person|  puts "Welcome message from #{pers
   
 
 BlockYield3.new.welcome("puneet") { |person|  puts "Welcome message from #{person}  to the block"}   
+
+BlockYield3.new.welcome("xmen") do  |person| 
+ puts "Welcome message from #{person}  to the block" 
+end
