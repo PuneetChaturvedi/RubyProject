@@ -40,4 +40,4 @@ class ArrayPlay
     end
 end
 
-ArrayPlay.new.method1
+ArrayPlay.new.eachmethod

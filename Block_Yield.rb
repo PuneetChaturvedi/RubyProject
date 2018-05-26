@@ -1,5 +1,14 @@
 class BlockYield
 
+
+  def testblock(&message)
+
+    puts "Hey"
+    yield
+    # or
+    message.call()
+
+  end
     def welcome(*person, &message)
         person.each do |p|
           puts "Hi #{p}...how are you today ?"
@@ -47,7 +56,7 @@ class BlockYield3
           print_message(p,&message)
         end
       when 2
-        puts "wao..all the required parameter are passed"
+        puts "wao..all  required parameter are passed"
         person.each do |p|
           print_message(&message)
         end
@@ -63,7 +72,7 @@ class BlockYield3
 end
 
   
-
+BlockYield.new.testblock {puts "dude!"}
 BlockYield.new.welcome("puneet", "prabhat") do
  puts "Welcome message from the block"
 end

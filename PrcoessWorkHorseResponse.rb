@@ -25,13 +25,17 @@ class PrcoessWorkHorseResponse
     ## This method parse the xml on salsify server, placed by "readRemoteXML"  method.
     def parsePhotoRequestReponseXMl
         Dir.glob(LOCAL_DIR+FILE_EXTN).each do |file|
-            xml_file = File.read(file)
-            doc=Nokogiri::XML.parse(xml_file)
-            puts doc
-
-        end
-        
+                Nokogiri::XML::Reader(File.open(file)).each do |node|
+                  if node.name == 'root' && node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
+                    product = Nokogiri::XML(node.outer_xml).children.first
+                    puts product
+                    #block.call(product)
+                  end
+                end
+            end
     end
+
+
 
     ## This method archive the photo sample request xml files.
     def zipFiles
@@ -42,9 +46,9 @@ class PrcoessWorkHorseResponse
 
     ## This is the main method of the class, it calls all the utility methods of the calls in a sequential order
     def processFiles
-       readRemoteXML
-       parsePhotoRequestReponseXMl
-       zipFiles
+        readRemoteXML
+        parsePhotoRequestReponseXMl 
+        zipFiles
     end
 
 
