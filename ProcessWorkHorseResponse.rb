@@ -2,7 +2,7 @@ require "nokogiri"
 require "net/sftp"
 require "archive/zip"
 
-class PrcoessWorkHorseResponse
+class ProcessWorkHorseResponse
   LOCAL_DIR = File.join(File.dirname(__FILE__), "/Downloads/PREQ/").freeze
   FILE_EXTN = "*.xml".freeze
   WORKHORSE_TO_SALSIFY = "/SalsifyImportToWH".freeze
@@ -81,8 +81,8 @@ class PrcoessWorkHorseResponse
   ## This is the main method of the class, it calls all the utility methods of the calls in a sequential order
   def processFiles
     readRemoteXML
-    #parsePhotoRequestReponseXMl2
-    # zipFiles
+    parsePhotoRequestReponseXMl2
+    zipFiles
   end
 end
 
