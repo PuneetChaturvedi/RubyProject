@@ -49,7 +49,7 @@ class Test
   def handle3
     n = 1
     loop do
-      n = n + 2
+      n = n + 5
       puts n
       next unless n == 10
       puts "Good"
