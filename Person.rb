@@ -7,7 +7,7 @@ class Person
     
     def display
         puts "my id is #@id and name is #{@name}"
-        puts "my id is #@id and name is #@name"
+        puts "my idd is #@id and name is #@name"
        
     end
 end
