@@ -72,7 +72,7 @@ class ProcessWorkHorseResponse
   end
 
   ## This method archive the photo sample request xml files.
-  def zipFiles
+  def zip_files
     time = Time.now.strftime('%Y-%d-%m_%H-%M-%S')
     Archive::Zip.archive(File.join(ARCHIVE[0], ARCHIVE[1], time, ARCHIVE[2]), File.join(LOCAL_DIR, '.'))
     Dir.glob(File.join(LOCAL_DIR, FILE_EXTN)).each { |file| File.delete(file) }
@@ -85,8 +85,8 @@ class ProcessWorkHorseResponse
   def processFiles
     readRemoteXML
     parsePhotoRequestReponseXMl2
-    zipFiles
     handle_files
+    zip_files
   end
 end
 
