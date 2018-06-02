@@ -78,11 +78,14 @@ class ProcessWorkHorseResponse
     Dir.glob(File.join(LOCAL_DIR, FILE_EXTN)).each { |file| File.delete(file) }
   end
 
+  def handle
+  end
+
   ## This is the main method of the class, it calls all the utility methods of the calls in a sequential order
   def processFiles
     readRemoteXML
     parsePhotoRequestReponseXMl2
-    
+    handle
   end
 end
 
