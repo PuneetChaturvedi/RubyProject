@@ -17,7 +17,7 @@ class Test
     a.each do |x|
       begin
         if x == 5
-          raise RuntimeError.new("You messed up!")
+          raise RuntimeError.new('You messed up!')
         end
       rescue RuntimeError => e
         puts e.message
@@ -52,18 +52,18 @@ class Test
       n = n + 1
       puts n
       next unless n == 10
-      puts "Good"
+      puts 'Good'
       break
     end
 
-    puts File.join(Dir.pwd, "tmp/ftp/")
+    puts File.join(Dir.pwd, 'tmp/ftp/')
   end
 
   def handle4
     enumerator = %w(one two three).each
     puts enumerator.class # => Enumerator
 
-    enumerator.each_with_object("foo") do |item, obj|
+    enumerator.each_with_object('foo') do |item, obj|
       puts "#{obj}: #{item}"
     end
 
@@ -73,9 +73,28 @@ class Test
 
     puts %w[foo bar baz].map.with_index { |w, i| "#{i}:#{w}" }
 
-    puts File.basename("/Users/chatupu/Downloads/PREQ/photoRequests_2018-05-30_16-59-42.xml.zip")
+    puts File.basename('/Users/chatupu/Downloads/PREQ/photoRequests_2018-05-30_16-59-42.xml.zip')
+  end
+
+  def returnArr
+    require 'logger'
+    @@dir = File.join(Dir.pwd, 'log/belkApp.log')
+    @@logs = Logger.new(STDOUT, 'daily', 7)    #STDOUT
+    @@logs.level = Logger::DEBUG
+
+    a = [1, 2, 34, 6, 7, 8]
+    a.push(5)
+    @@logs.debug('hi')
+  end
+
+  def handle5
+    returnArr.each_slice(2) do |g|
+      j = g.map { |y| y * 2 }
+
+      p j
+    end
   end
 end
 
 #/Users/chatupu/Documents/GitHub/belkApp/photorequest
-puts Test.new.handle3
+puts Test.new.handle5
