@@ -8,7 +8,7 @@ class HelloWorld
   end
 
   def secondMethod
-    ary = ['fred', 10, 3.14, 'This is a   tesst string', 'last element']
+    ary = ['fred', 10, 3.14, 'This is a string', 'last element']
 
     ary.each do |i|
       puts i
@@ -26,6 +26,10 @@ class HelloWorld
 
   def initialize
     puts ' I\'m Initialized'
+  end
+
+  def handle4
+    puts 'helo'
   end
 end
 
