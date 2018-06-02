@@ -1,6 +1,6 @@
 class Test
   def path
-    sum = 0
+    sum = 10
     a = (1..100).to_a
     a.each { |x| sum = sum + x }
     sum
