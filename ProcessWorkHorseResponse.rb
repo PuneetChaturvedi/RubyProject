@@ -79,6 +79,7 @@ class ProcessWorkHorseResponse
   end
 
   def handle_files
+    puts 'files'
   end
 
   ## This is the main method of the class, it calls all the utility methods of the calls in a sequential order
