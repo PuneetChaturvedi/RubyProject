@@ -8,7 +8,7 @@ class HelloWorld
   end
 
   def secondMethod
-    ary = ['fred', 10, 3.14, 'This is a   testt string', 'last element']
+    ary = ['fred', 10, 3.14, 'This is a   test string', 'last element']
     ary.each do |i|
       puts i
     end
