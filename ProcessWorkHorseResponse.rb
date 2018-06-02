@@ -85,7 +85,6 @@ class ProcessWorkHorseResponse
   def processFiles
     readRemoteXML
     parsePhotoRequestReponseXMl2
-
     handle
   end
 end
