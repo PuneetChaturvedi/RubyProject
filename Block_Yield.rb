@@ -73,7 +73,7 @@ BlockYield.new.welcome2('puneet', 'prabhat') do
   puts '------------'
 end
 
-BlockYield2.new.welcome('puneet') { |person| puts "Welcome message from #{person}  to the block" }
+BlockYield2.new.welcome('puneet') { |person| puts "Welcome   #{person}  to the block" }
 BlockYield2.new.welcome2('puneet') { |person| puts "Welcome message from #{person}  to the block" }
 
 BlockYield3.new.welcome('puneet') { |person| puts "Welcome message from #{person}  to the block" }
