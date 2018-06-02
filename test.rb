@@ -78,7 +78,7 @@ class Test
 
   def returnArr
     require 'logger'
-    @@dir = File.join(Dir.pwd, 'log/belkApp.log')
+    @@dir = File.join(Dir.pwd, 'log/belkAppp.log')
     @@logs = Logger.new(STDOUT, 'daily', 7)    #STDOUT
     @@logs.level = Logger::DEBUG
 

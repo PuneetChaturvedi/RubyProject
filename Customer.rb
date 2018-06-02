@@ -29,16 +29,16 @@ class Customer
 
   def total_no_of_customers()
     @@no_of_customers += 1
-    puts "Total number of customers: #{@@no_of_customers}"
+    puts "Total number of custoomers: #{@@no_of_customers}"
   end
 
   def self.createdefaultInstance(cust_id, cust_name, cust_addr)
-    new(5, cust_name + "default", "Default Address")
+    new(5, cust_name + 'default', 'Default Address')
   end
 end
 
 # Create Objects
-cust1 = Customer.new("1", "John", "Wisdom Apartments, Ludhiya")
+cust1 = Customer.new('1', 'John', 'Wisdom Apartments, Ludhiya')
 #cust = Customer.new # Gives error, for create object with method , passed the number of params in initialize method
 
 # Call Methods
@@ -49,5 +49,5 @@ cust1 = Customer.new("1", "John", "Wisdom Apartments, Ludhiya")
 #cust2.total_no_of_customers()
 
 puts cust1.cust_name
-cust2 = Customer.createdefaultInstance("", "", "")
+cust2 = Customer.createdefaultInstance('', '', '')
 puts cust2.cust_name

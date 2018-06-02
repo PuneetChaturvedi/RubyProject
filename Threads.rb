@@ -1,12 +1,12 @@
-require "Parallel"
-require "benchmark"
+require 'Parallel'
+require 'benchmark'
 
 class ThreadTest
   def test
     puts Benchmark.measure {
       summ = 0
       100000.times do
-        a = (1..10).to_a
+        a = (1..111).to_a
         a.each { |s| summ = summ + s }
       end
     }
@@ -21,7 +21,7 @@ class ThreadTest
   end
 
   def test2
-    puts File.join(File.dirname(__FILE__), "/downloads/Preq", "/")
+    puts File.join(File.dirname(__FILE__), '/downloads/Preq', '/')
   end
 end
 

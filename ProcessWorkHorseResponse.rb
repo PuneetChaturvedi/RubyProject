@@ -1,44 +1,44 @@
-require "nokogiri"
-require "net/sftp"
-require "archive/zip"
+require 'nokogiri'
+require 'net/sftp'
+require 'archive/zip'
 
 class ProcessWorkHorseResponse
-  LOCAL_DIR = File.join(File.dirname(__FILE__), "/Downloads/PREQ/").freeze
-  FILE_EXTN = "*.xml".freeze
-  WORKHORSE_TO_SALSIFY = "/SalsifyImportToWH".freeze
-  ARCHIVE = [LOCAL_DIR, "PhotoRequests_", ".zip"]
+  LOCAL_DIR = File.join(File.dirname(__FILE__), '/Downloads/PREQ/').freeze
+  FILE_EXTN = '*.xml'.freeze
+  WORKHORSE_TO_SALSIFY = '/SalsifyImportToWH'.freeze
+  ARCHIVE = [LOCAL_DIR, 'PhotoRequests_', '.zip']
 
   ## This method download the files from workhorse server to salsify server.
 
   def readRemoteXML
     #sftp= Net::SFTP.start('belkuat.workhorsegroup.us', 'BLKUATUSER', :password => '5ada833014a4c092012ed3f8f82aa0c1')
-    Net::SFTP.start("belkuat.workhorsegroup.us", "BLKUATUSER", :password => "5ada833014a4c092012ed3f8f82aa0c1") do |sftp|
+    Net::SFTP.start('belkuat.workhorsegroup.us', 'BLKUATUSER', :password => '5ada833014a4c092012ed3f8f82aa0c1') do |sftp|
       sftp.dir.glob(WORKHORSE_TO_SALSIFY, FILE_EXTN).each do |file|
         #puts file.name
-        sftp.download(File.join(WORKHORSE_TO_SALSIFY, "/", file.name), File.join(LOCAL_DIR, file.name))
+        sftp.download(File.join(WORKHORSE_TO_SALSIFY, '/', file.name), File.join(LOCAL_DIR, file.name))
       end
     end
   end
 
-  ## This method parse the xml on salsify server, placed by "readRemoteXML"  method.
+  ## This method parse the xml on salsify serverr, placed by "readRemoteXML"  method.
   def parsePhotoRequestReponseXMl
     Dir.glob(File.join(LOCAL_DIR, FILE_EXTN)).each do |file|
       doc = Nokogiri::XML.parse(File.open(file)) { |xml| xml.noblanks }
       project = doc.root.child
       project.children.each { |shotGrp|
-        if shotGrp.name == "ShotGroup"
+        if shotGrp.name == 'ShotGroup'
           puts shotGrp.name #puts node.children.first.name
-          puts "SalsifyID: " + shotGrp["SalsifyID"]
-          puts "ShotGroupStatus: " + shotGrp["ShotGroupStatus"]
-          puts "------------"
+          puts 'SalsifyID: ' + shotGrp['SalsifyID']
+          puts 'ShotGroupStatus: ' + shotGrp['ShotGroupStatus']
+          puts '------------'
           shotGrp.children.each { |image|
             puts image.name
             puts image.values
-            puts "-----------"
+            puts '-----------'
             image.children.each { |sample|
               puts sample.name
               puts sample.values
-              puts "##########"
+              puts '##########'
             }
           }
         end
@@ -51,19 +51,19 @@ class ProcessWorkHorseResponse
       doc = Nokogiri::XML.parse(File.open(file)) { |xml| xml.noblanks }
       project = doc.root.child
       project.children.each { |shotGrp|
-        if shotGrp.name == "ShotGroup"
+        if shotGrp.name == 'ShotGroup'
           puts shotGrp.name #puts node.children.first.name
-          puts "SalsifyID: " + shotGrp["SalsifyID"]
-          puts "ShotGroupStatus: " + shotGrp["ShotGroupStatus"]
-          puts "------------"
+          puts 'SalsifyID: ' + shotGrp['SalsifyID']
+          puts 'ShotGroupStatus: ' + shotGrp['ShotGroupStatus']
+          puts '------------'
           shotGrp.children.each { |image|
             puts image.name
             puts image.values
-            puts "-----------"
+            puts '-----------'
             image.children.each { |sample|
               puts sample.name
               puts sample.values
-              puts "##########"
+              puts '##########'
             }
           }
         end
@@ -73,8 +73,8 @@ class ProcessWorkHorseResponse
 
   ## This method archive the photo sample request xml files.
   def zipFiles
-    time = Time.now.strftime("%Y-%d-%m_%H-%M-%S")
-    Archive::Zip.archive(File.join(ARCHIVE[0], ARCHIVE[1], time, ARCHIVE[2]), File.join(LOCAL_DIR, "."))
+    time = Time.now.strftime('%Y-%d-%m_%H-%M-%S')
+    Archive::Zip.archive(File.join(ARCHIVE[0], ARCHIVE[1], time, ARCHIVE[2]), File.join(LOCAL_DIR, '.'))
     Dir.glob(File.join(LOCAL_DIR, FILE_EXTN)).each { |file| File.delete(file) }
   end
 

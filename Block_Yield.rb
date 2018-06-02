@@ -1,6 +1,6 @@
 class BlockYield
   def testblock(&message)
-    puts "Hey"
+    puts 'Hey'
     yield if block_given?
     # or
     message.call()
@@ -44,40 +44,40 @@ class BlockYield3
     no_of_argument = message.arity
     case no_of_argument
     when 1
-      puts "only one parameter is passed"
+      puts 'only one parameter is passed'
       person.each do |p|
         print_message(p, &message)
       end
     when 2
-      puts "wao..all  required parameter are passed"
+      puts 'wao..all  required parameter are passed'
       person.each do |p|
         print_message(&message)
       end
     else
-      raise "invalid no of parameter"
+      raise 'invalid no of parameter'
     end
   end
 
   def print_message(p)
-    puts "welcome message will be printed by this method"
+    puts 'welcome message will be printed by this method'
     puts yield(p) if block_given?
   end
 end
 
-BlockYield.new.testblock { puts "dude!" }
-BlockYield.new.welcome("puneet", "prabhat") do
-  puts "Welcome message from the block"
+BlockYield.new.testblock { puts 'dude!' }
+BlockYield.new.welcome('puneet', 'prabhat') do
+  puts 'Welcome message from the bllock'
 end
-BlockYield.new.welcome2("puneet", "prabhat") do
-  puts "Welcome message from the block"
-  puts "------------"
+BlockYield.new.welcome2('puneet', 'prabhat') do
+  puts 'Welcome message from the block'
+  puts '------------'
 end
 
-BlockYield2.new.welcome("puneet") { |person| puts "Welcome message from #{person}  to the block" }
-BlockYield2.new.welcome2("puneet") { |person| puts "Welcome message from #{person}  to the block" }
+BlockYield2.new.welcome('puneet') { |person| puts "Welcome message from #{person}  to the block" }
+BlockYield2.new.welcome2('puneet') { |person| puts "Welcome message from #{person}  to the block" }
 
-BlockYield3.new.welcome("puneet") { |person| puts "Welcome message from #{person}  to the block" }
+BlockYield3.new.welcome('puneet') { |person| puts "Welcome message from #{person}  to the block" }
 
-BlockYield3.new.welcome("xmen") do |person|
+BlockYield3.new.welcome('xmen') do |person|
   puts "Welcome message from #{person}  to the block"
 end
