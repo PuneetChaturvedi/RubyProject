@@ -73,7 +73,7 @@ class Test
 
     puts %w[foo bar baz].map.with_index { |w, i| "#{i}:#{w}" }
 
-    puts File.basename('/Users/chatupu/Downloads/PREQ/photoRequests_2018-05-30_16-59-42.xml.zip')
+    puts File.basename('/Users/chatupu/Downloads/PREQ/photoRequests_2018-05-30_16.xml.zip')
   end
 
   def returnArr
