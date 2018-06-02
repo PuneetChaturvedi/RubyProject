@@ -1,7 +1,7 @@
 class ArrayPlay
   def eachmethod
     a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    x = a.each { |e| e * 2 }  # each return the original array, so to perform work in each do inside block only
+    x = a.each { |e| e * 3 }  # each return the original array, so to perform work in each do inside block only
 
     puts ''
     puts x  # return   original array
