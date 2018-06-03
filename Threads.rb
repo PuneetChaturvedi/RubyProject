@@ -7,6 +7,7 @@ class ThreadTest
       summ = 0
       100000.times do
         a = (1..10).to_a
+
         a.each { |s| summ = summ + s }
       end
     }
