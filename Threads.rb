@@ -13,7 +13,7 @@ class ThreadTest
     puts Benchmark.measure {
       sum = 0
       100000.times do
-        Parallel.each(1..10, :in_threads => 4) do |user|
+        Parallel.each(1..11, :in_threads => 4) do |user|
           user = sum + user
         end
       end
