@@ -1,3 +1,6 @@
+require 'mail'
+require 'json'
+
 class Test
   def path
     sum = 10
@@ -94,7 +97,90 @@ class Test
       p j
     end
   end
+
+  def handle6
+    main = Hash.new
+    main = {'a' => 'b', 'c' => 'd'}.to_h
+    main = main.merge({'e' => 'f'})
+    puts main
+  end
+
+  def handle7
+    update_hashes = [{'id' => 109, 'color_id' => '212'}].map(&:to_hash)
+    update_hashes.map do |update_hash|
+      puts update_hash
+    end
+  end
+
+  def self.exclaim(texttext, exclamation: '!', number: 7)
+    text + exclamation * number
+  end
+
+  def send_mail(from, to, subject, body, add_file: nil)
+    #mail = Mail.new
+    mail = Mail.new do
+      from 'Test@test.com'
+      to 'puneet_chaturvedi@belk.com'
+      subject 'This is a test email'
+      body 'Hello'
+      add_file add_file
+    end
+    #mail[:from] = from
+    #mail[:to] = to
+    #mail.subject = subject
+    #mail.body = body
+    #mail[:add_file] = add_file
+    mail.delivery_method :smtp, address: 'belksmtp', port: 25
+    mail.deliver
+  end
+
+  def handle8
+    send_mail('puneet_chaturvedi@belk.com', 'puneet_chaturvedi@belk.com', 'test mail', 'test home', add_file: '/Users/chatupu/Downloads/Constants.java')
+
+    #send_emails('sender@domain.com', ['puneet_chaturvedi@belk.com'], 'test Email', 'Hi there this is a test email hope you like it')
+  end
+
+  #change to your server
+
+  def send_emails
+    x = Mail.new
+    x.defaults do
+      delivery_method :sendmail
+    end
+    x do
+      to 'puneet_chaturvedi@belk.com'
+      from 'ada@test.lindsaar.net'
+      subject 'testing sendmail'
+      body 'testing sendmail'
+    end
+    x.deliver
+  end
+
+  def handle9
+    s = {'1512826' => {'Ecomm Photo Status' => 'Shots Selected', 'Image Specialist Task Status' => 'Open', 'Sample Reject Reason' => 'not good'},
+         '1512827' => {'Ecomm Photo Status' => 'Recieved', 'Sample Reject Reason' => 'not good'}}
+    a = []
+    s.each do |key, value|
+      a.push 'id': key, 'Ecomm Photo Status': value['Ecomm Photo Status'], ' sample Reject Reason': value['Sample Reject Reason']
+    end
+
+    puts a.to_json
+  end
+
+  def handle10
+    b = File.birthtime('/Users/chatupu/Documents/editing dot files.rtf')
+    puts b
+    puts Time.new.to_i
+    a = Time.new
+    puts ((a - b) / (3600 * 24)).to_i
+  end
 end
 
 #/Users/chatupu/Documents/GitHub/belkApp/photorequest
-puts Test.new.handle5
+puts Test.new.handle10
+
+#puts Test.exclaim('hello', number: 4) #=> 'hello!!!!'
+# equivalent:
+#puts Test.exclaim('hello', {:number => 4}) #=> 'hello!!!!'
+# equivalent:
+#uts Test.exclaim('hello', :number => 4)#=> 'hello!!!!'
