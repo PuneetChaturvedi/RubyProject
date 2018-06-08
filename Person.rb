@@ -6,7 +6,7 @@ class Person
   end
 
   def display
-    puts "my id is #@id and name is #{@name}"
+    puts "my id is #@id and first name is #{@name}"
     puts "my id is #@id and first name is #@name"
   end
 end
