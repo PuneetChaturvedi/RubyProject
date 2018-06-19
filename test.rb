@@ -157,27 +157,43 @@ class Test
   end
 
   def handle9
-    s = {'1512826' => {'Ecomm Photo Status' => 'Shots Selected', 'Image Specialist Task Status' => 'Open', 'Sample Reject Reason' => 'not good'},
-         '1512827' => {'Ecomm Photo Status' => 'Recieved', 'Sample Reject Reason' => 'not good'}}
-    a = []
-    s.each do |key, value|
-      a.push 'id': key, 'Ecomm Photo Status': value['Ecomm Photo Status'], ' sample Reject Reason': value['Sample Reject Reason']
+    s = {'1': '2', '3': 4, 'D': 'puneet', '6': 8}
+    y = s.values.map.with_index do |x, i|
+      if i == 1 or i == 3
+        x = x / 2
+      else
+        x
+      end
     end
+    p y
 
-    puts a.to_json
+    puts Date.parse('2018-06-08T12:20:14.354Z').to_s
   end
 
   def handle10
-    b = File.birthtime('/Users/chatupu/Documents/editing .rtf')
+    b = File.birthtime('/Users/chatupu/Documents/editing dot files .rtf')
     puts b
     puts Time.new.to_i
     a = Time.new
     puts ((a - b) / (3600 * 24)).to_i
   end
+
+  def handle11
+    unless a.nil? || a == 2
+      puts a
+    end
+  end
+
+  def handle12
+    s = '06/13/2018 13:21:55'
+    puts DateTime.strptime(s, '%m/%d/%Y %H:%M:%S')
+    t = Time.new
+    puts Time.now.getlocal
+  end
 end
 
 #/Users/chatupu/Documents/GitHub/belkApp/photorequest
-puts Test.new.handle10
+puts Test.new.handle12
 
 #puts Test.exclaim('hello', number: 4) #=> 'hello!!!!'
 # equivalent:
