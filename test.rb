@@ -87,15 +87,18 @@ class Test
 
     a = [1, 2, 34, 6, 7, 8]
     a.push(5)
-    @@logs.debug('hi')
   end
 
   def handle5
-    returnArr.each_slice(2) do |g|
-      j = g.map { |y| y * 2 }
-
-      p j
+    returnArr.each_slice(2).each do |x|
+      g = x.map do |y|
+        y = y + 1
+      end
+      p g
     end
+    p x
+    # j = g.map { |y| y * 2 }
+
   end
 
   def handle6
@@ -187,13 +190,63 @@ class Test
   def handle12
     s = '06/13/2018 13:21:55'
     puts DateTime.strptime(s, '%m/%d/%Y %H:%M:%S')
-    t = Time.new
     puts Time.now.getlocal
+  end
+
+  def handle13
+    # puts @arr
+    h = Hash.new { |key, value| }
+    a = h['d']
+    puts a.nil?
+    s = '06/13/2018 13:21:55'
+    puts s.split(' ')
+  end
+
+  def handle14(_data)
+    _data.push(10)
+  end
+
+  def handle15
+    a = [1, 2]
+    a += [3]
+
+    s = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    s.each_slice(222) do |t|
+      p t
+    end
+  end
+
+  def handle17
+    a = [1, 2, 3]
+    s = 0
+    puts handle16(a, s)
+    a = [1, 2, 3]
+    puts handle18(a, a.count - 1)
+  end
+
+  # Top down recurrsive
+  def handle16(arr, s)
+    puts arr.kind_of?(Array)
+    if arr.count != 0
+      s = s + arr.pop()
+      handle16(arr, s)
+    else
+      return s
+    end
+  end
+
+  # Bottom up recurrsive
+  def handle18(a, s)
+    if s == 0
+      return a[s]
+    else
+      return a[s] + handle18(a, s - 1)
+    end
   end
 end
 
 #/Users/chatupu/Documents/GitHub/belkApp/photorequest
-puts Test.new.handle12
+puts Test.new.handle17
 
 #puts Test.exclaim('hello', number: 4) #=> 'hello!!!!'
 # equivalent:
