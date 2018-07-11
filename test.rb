@@ -211,9 +211,17 @@ class Test
     a += [3]
 
     s = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    s.each_slice(222) do |t|
-      p t
+    r = s.each_slice(4).map { |t|
+      check(t)
+    }.flatten
+    p r
+  end
+
+  def check(t)
+    y = t.map do |a|
+      a + 5
     end
+    y
   end
 
   def handle17
@@ -243,10 +251,27 @@ class Test
       return a[s] + handle18(a, s - 1)
     end
   end
+
+  def handle19
+    handle20(2)
+    handle20(5, nil, true)
+    handle20(6, 10, false)
+  end
+
+  def handle20(req, sample = nil, is_g = false)
+    puts req, sample, is_g
+    puts '----'
+  end
+
+  def handle21
+    hm = {:of_or_sl => 'SL', :on_hand_or_from_vendor => 'OH', :sample_type => 'Product', :turn_in_date => nil, :must_be_returned => false, :return_to => 'merchant', :return_notes => '', :silhouette_required => false, :instructions => nil, :sent_to_rrd => false, :completed_at => 'Sun, 07 Oct 2018', :parent_id => 31}
+
+    puts hm[:parent_id]
+  end
 end
 
 #/Users/chatupu/Documents/GitHub/belkApp/photorequest
-puts Test.new.handle17
+puts Test.new.handle21
 
 #puts Test.exclaim('hello', number: 4) #=> 'hello!!!!'
 # equivalent:
