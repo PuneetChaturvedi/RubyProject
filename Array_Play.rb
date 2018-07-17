@@ -39,4 +39,4 @@ class ArrayPlay
   end
 end
 
-ArrayPlay.new.find
+ArrayPlay.new.mapmethod

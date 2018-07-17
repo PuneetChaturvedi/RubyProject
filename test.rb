@@ -1,5 +1,7 @@
 require 'mail'
 require 'json'
+require 'parallel'
+require 'benchmark'
 
 class Test
   def path
@@ -268,10 +270,35 @@ class Test
 
     puts hm[:parent_id]
   end
+
+  def handle22
+    a = (1..100)
+    sum = 0
+    Parallel.map(a, in_threads: 1) do |t|
+      sum += t
+      sleep 1
+    end
+  end
+
+  def handle_22
+    a = (1..100)
+    sum = 0
+    a.each do |t|
+      sum += t
+      sleep 1
+    end
+  end
+
+  def handle23
+    Benchmark.bm(10) do |x|
+      x.report('parallel:') { handle22 }
+      x.report('without ||:') { handle_22 }
+    end
+  end
 end
 
 #/Users/chatupu/Documents/GitHub/belkApp/photorequest
-puts Test.new.handle21
+puts Test.new.handle23
 
 #puts Test.exclaim('hello', number: 4) #=> 'hello!!!!'
 # equivalent:
