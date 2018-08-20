@@ -290,10 +290,8 @@ class Test
   end
 
   def handle23
-    Benchmark.bm(10) do |x|
-      x.report('parallel:') { handle22 }
-      x.report('without ||:') { handle_22 }
-    end
+    s='41003301175806'
+    return s[7,s.length]
   end
 end
 
