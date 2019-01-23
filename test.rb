@@ -5,15 +5,21 @@ require 'benchmark'
 
 class Test
   def path
-    sum = 10
-    a = (1..100).to_a
-    a.each { |x| sum = sum + x }
-    sum
+    
+    a = [{'a' => 'b'}, {'c' => 'd'},{'q'=>'p'}, {'k'=>'l'},{'m'=> 'n'}, {'u'=>'w'}]
+    a.compact.map do |x|
+      if x['a'] == 'b'
+       [x,1]
+      end
+    end.compact.to_h
+    
   end
 
   def testm
-    z = path
-    puts z
+    s=["cp"]
+
+    puts s.include?(nil)
+    
   end
 
   def handle
@@ -105,10 +111,25 @@ class Test
 
   def handle6
     main = Hash.new
-    main = {'a' => 'b', 'c' => 'd'}.to_h
+    main = {'a' => 'b', 'c' => 'd','q'=>'p', 'k'=>'l','m'=> 'n', 'u'=>'w'}.to_h
     main = main.merge({'e' => 'f'})
-    puts main
+     x=main.each_slice(5).map do |pos|
+        pos.to_h
+     end
+       
+     x.each_slice(5) do |y|
+      Parallel.each(y,in_threads: 2) do |upsert_sku_map|
+        upsert_sku_map.each do |key,value|
+          puts "#{key},#{value}"
+        end
+      end
+    end
+    #Parallel.each(main,in_threads: 2) do |upsert_sku_map|
+     # check(upsert_sku_map)
+    #end
   end
+
+  
 
   def handle7
     update_hashes = [{'id' => 109, 'color_id' => '212'}].map(&:to_hash)
@@ -209,14 +230,12 @@ class Test
   end
 
   def handle15
-    a = [1, 2]
-    a += [3]
+    a = "1/2 ct. t.w. Chocolate Diamonds® and 2 ct. t.w. Nude Diamonds® Adjustable Bracelet set in 14k Honey Gold®"
+   
 
-    s = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    r = s.each_slice(4).map { |t|
-      check(t)
-    }.flatten
-    p r
+    b= a.gsub("\n","")
+    
+    puts b
   end
 
   def check(t)
@@ -293,10 +312,40 @@ class Test
     s='41003301175806'
     return s[7,s.length]
   end
+
+  def data
+    @b='2'.freeze
+  end
+
+  def handle24
+    @a=[]
+
+    @a << data
+
+  end
+  def update_bopis_flag_salsify(delta_for_upsert)
+    delta_for_upsert.each_slice(LIMIT).map do |sku_map|
+      update_salsify(sku_map.to_h)
+    end
+  end
+
+  def update_salsify(upsert_sku_map)
+    begin
+      products = get_json_for_salsify(upsert_sku_map)
+      salsify_client.update_products(products)
+    rescue Exception => e
+      $log.debug('Exception while updating products:' + e.message)
+    end
+  end
+
+  def handle24
+    puts DateTime.now.utc.to_datetime
+  end
+
 end
 
 #/Users/chatupu/Documents/GitHub/belkApp/photorequest
-puts Test.new.handle23
+puts Test.new.handle15
 
 #puts Test.exclaim('hello', number: 4) #=> 'hello!!!!'
 # equivalent:
